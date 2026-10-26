@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
+<title>Creador de Collages</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Creador de Collages</h1>
+      <p class="sub">Elegí una grilla, subí tus fotos, encuadralas y descargá el resultado.</p>
+    </div>
+    <button class="act" id="theme" type="button"></button>
+  </header>
+  <div class="layout">
+    <aside class="panel">
+      <h2>Tipo de collage</h2>
+      <div class="opts" id="opts"></div>
+      <h2>Ajustes</h2>
+      <label class="row" id="linesRow" hidden>Cantidad de líneas <span class="val"><input type="range" id="lines" min="2" max="10" step="1" value="4"><output id="linesOut">4</output></span></label>
+      <label class="row">Alargue horizontal <input type="range" id="str" min="1" max="3" step="0.05" value="1"></label>
+      <label class="row">Separación <input type="range" id="gap" min="0" max="6" step="0.25" value="1"></label>
+      <label class="row">Bordes redondeados <input type="range" id="rad" min="0" max="30" value="0"></label>
+      <label class="row">Color de fondo <input type="color" id="bgc" value="#ffffff"></label>
+      <button class="act pri" id="dl">Descargar PNG</button>
+    </aside>
+    <section class="panel">
+      <div class="bar">
+        <button class="act" id="undo" type="button" disabled>↶ Deshacer</button>
+        <button class="act" id="clr" type="button">Vaciar collage</button>
+      </div>
+      <div class="stage" id="stage"><div id="grid"></div></div>
+      <div class="edit" id="edit" hidden>
+        <label class="row">Zoom de la foto <input type="range" id="zoom" min="1" max="5" step="0.01" value="1"></label>
+        <div class="btns">
+          <button class="act" id="ctr">Centrar</button>
+          <button class="act" id="chg">Cambiar foto</button>
+          <button class="act" id="del">Quitar</button>
+        </div>
+      </div>
+      <p class="hint">Tocá una celda vacía para subir fotos (podés elegir varias) o arrastrá imágenes encima. Tocá una foto para seleccionarla: arrastrala para moverla y usá la rueda del mouse, el pellizco o el control de zoom para acercarla.</p>
+    </section>
+  </div>
+  <input type="file" id="file" accept="image/*" multiple hidden>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
