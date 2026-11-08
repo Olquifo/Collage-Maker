@@ -105,7 +105,7 @@ function render(){
     const d=document.createElement('div'),e=imgs[i];
     d.className='cell';d.style.borderRadius=rad+'px';
     if(e){
-      d.classList.add('has');
+      d.classList.add('has');d.style.background=$('cbg').value;
       const im=document.createElement('img');im.src=e.im.src;im.draggable=false;
       place(im,e);d.appendChild(im);bindEdit(d,im,e,i);
     }else{
@@ -133,7 +133,7 @@ function load(files,start){
 }
 
 fileIn.onchange=()=>{load([...fileIn.files],target);fileIn.value=''};
-['gap','rad','bgc','str'].forEach(id=>$(id).oninput=render);
+['gap','rad','bgc','cbg','str'].forEach(id=>$(id).oninput=render);
 $('lines').oninput=()=>{
   const n=+$('lines').value;$('linesOut').textContent=n;
   LAYOUTS.find(l=>l.lines).c=n;buildOpts();render();
@@ -161,7 +161,7 @@ $('dl').onclick=()=>{
     if(x.roundRect)x.roundRect(cx,cy,cw,ch,rad);else x.rect(cx,cy,cw,ch);
     x.clip();
     const e=imgs[i];
-    if(e){const f=fit(e,cw,ch);x.drawImage(e.im,cx+f.x,cy+f.y,f.w,f.h)}
+    if(e){const f=fit(e,cw,ch);x.fillStyle=$('cbg').value;x.fillRect(cx,cy,cw,ch);x.drawImage(e.im,cx+f.x,cy+f.y,f.w,f.h)}
     else{x.fillStyle='#e5e3dc';x.fillRect(cx,cy,cw,ch)}
     x.restore();
   }
